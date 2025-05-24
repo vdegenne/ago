@@ -1,0 +1,36 @@
+{
+	"name": "@vdegenne/ago",
+	"version": "0.1.0",
+	"description": "simple module for ago representations",
+	"type": "module",
+	"exports": {
+		".": {
+			"default": "./lib/ago.js",
+			"types": "./lib/ago.d.ts"
+		}
+	},
+	"scripts": {
+		"build": "wireit"
+	},
+	"files": [
+		"./lib"
+	],
+	"devDependencies": {
+		"typescript": "^5.8.3",
+		"wireit": "^0.14.12"
+	},
+	"wireit": {
+		"build": {
+			"command": "tsc --pretty",
+			"clean": "if-file-deleted",
+			"files": [
+				"./tsconfig.json",
+				"./src"
+			],
+			"output": [
+				"./lib"
+			]
+		}
+	}
+}
+
