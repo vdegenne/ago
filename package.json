@@ -1,6 +1,6 @@
 {
 	"name": "@vdegenne/ago",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "simple module for ago representations",
 	"type": "module",
 	"exports": {
@@ -10,7 +10,8 @@
 		}
 	},
 	"scripts": {
-		"build": "wireit"
+		"build": "wireit",
+		"test": "wireit"
 	},
 	"files": [
 		"./lib"
@@ -29,6 +30,12 @@
 			],
 			"output": [
 				"./lib"
+			]
+		},
+		"test": {
+			"command": "node ./lib/test.js",
+			"dependencies": [
+				"build"
 			]
 		}
 	}

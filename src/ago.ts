@@ -3,7 +3,7 @@ export function ago(dateInput: string | number): string {
 	let pastDate: Date;
 
 	if (typeof dateInput === 'number') {
-		pastDate = new Date(dateInput < 1e12 ? dateInput * 1000 : dateInput);
+		pastDate = new Date(dateInput < 1e11 ? dateInput * 1000 : dateInput);
 	} else {
 		pastDate = new Date(dateInput);
 	}
