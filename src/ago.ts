@@ -1,4 +1,21 @@
-export function ago(dateInput: string | number): string {
+interface AgoOptions {
+	/**
+	 * If true will print "Today" and "Yesterday" for respective interval.
+	 *
+	 * @default false
+	 */
+	todayAndYesterday: boolean;
+}
+
+export function ago(
+	dateInput: string | number,
+	options?: Partial<AgoOptions>,
+): string {
+	const _options: AgoOptions = {
+		todayAndYesterday: false,
+		...options,
+	};
+
 	const now = new Date();
 	let pastDate: Date;
 
@@ -22,6 +39,10 @@ export function ago(dateInput: string | number): string {
 	for (const [unit, value] of Object.entries(intervals)) {
 		const interval = Math.floor(seconds / value);
 		if (interval >= 1) {
+			if (_options.todayAndYesterday && unit === 'day') {
+				if (interval === 1) return 'Today';
+				if (interval === 2) return 'Yesterday';
+			}
 			return `${interval} ${unit}${interval > 1 ? 's' : ''} ago`;
 		}
 	}
