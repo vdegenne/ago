@@ -21,6 +21,7 @@ export function ago(
 
 	if (typeof dateInput === 'number') {
 		pastDate = new Date(dateInput < 1e11 ? dateInput * 1000 : dateInput);
+		console.log(pastDate);
 	} else {
 		pastDate = new Date(dateInput);
 	}
@@ -39,9 +40,12 @@ export function ago(
 	for (const [unit, value] of Object.entries(intervals)) {
 		const interval = Math.floor(seconds / value);
 		if (interval >= 1) {
-			if (_options.todayAndYesterday && unit === 'day') {
-				if (interval === 1) return 'Today';
-				if (interval === 2) return 'Yesterday';
+			if (_options.todayAndYesterday) {
+				if (unit === 'hour' || unit === 'min' || unit === 'sec') {
+					return 'Today';
+				} else if (unit === 'day' && interval === 1) {
+					return 'Yesterday';
+				}
 			}
 			return `${interval} ${unit}${interval > 1 ? 's' : ''} ago`;
 		}
